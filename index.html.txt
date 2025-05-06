@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pengumuman Kelulusan SDN Pataonan 4</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f0f8ff;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #e0ffe0;
+      border: 1px solid #2ecc71;
+    }
+    .not-found {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pengumuman Kelulusan SDN Pataonan 4<br>Tahun Pelajaran 2024/2025</h1>
+
+  <label for="nisn">Masukkan NISN:</label><br>
+  <input type="text" id="nisn" placeholder="Contoh: 0127209889" />
+  <br><button onclick="cekKelulusan()">Cek Kelulusan</button>
+
+  <div id="hasil" class="result"></div>
+
+  <script>
+    const dataSiswa = [
+      { nisn: "0127209889", nama: "AHMAD FATIR MUHAIMINAN", status: "Lulus" },
+      { nisn: "3137192538", nama: "Ahmad Mikdad Romsi", status: "Lulus" },
+      { nisn: "3132942987", nama: "Ainun Najib", status: "Lulus" },
+      { nisn: "3133489817", nama: "Ainur Rohmah", status: "Lulus" },
+      { nisn: "3133910575", nama: "Amiliyah", status: "Lulus" },
+      { nisn: "3132592248", nama: "Jihan Fakhirah", status: "Lulus" },
+      { nisn: "0131133428", nama: "Muhammad Firdaus", status: "Lulus" },
+      { nisn: "3122210128", nama: "Noviana Putri", status: "Lulus" },
+      { nisn: "0134630775", nama: "Putra Albaraka", status: "Lulus" },
+      { nisn: "0136776251", nama: "Rima Rahmawati", status: "Lulus" },
+    ];
+
+    function cekKelulusan() {
+      const nisnInput = document.getElementById("nisn").value.trim();
+      const hasilDiv = document.getElementById("hasil");
+
+      const siswa = dataSiswa.find(s => s.nisn === nisnInput);
+
+      if (siswa) {
+        hasilDiv.innerHTML = `
+          <strong>NISN:</strong> ${siswa.nisn}<br>
+          <strong>Nama:</strong> ${siswa.nama}<br>
+          <strong>Status:</strong> <span style="color: green;">${siswa.status}</span>
+        `;
+        hasilDiv.classList.remove("not-found");
+      } else {
+        hasilDiv.innerHTML = `Data dengan NISN tersebut tidak ditemukan.`;
+        hasilDiv.classList.add("not-found");
+      }
+    }
+  </script>
+</body>
+</html>
